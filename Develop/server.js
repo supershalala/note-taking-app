@@ -18,6 +18,20 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// RETURN all saved notes in DB to notes html 
+app.get('/api/notes', (req, res) => {
+  fs.readFile(path.join(__dirname, 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to read the notes database' });
+    } else {
+      res.json(JSON.parse(data));
+    }
+  });
+});
+
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
