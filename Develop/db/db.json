@@ -2,5 +2,10 @@
     {
         "title":"Test Title",
         "text":"Test text"
+    },
+
+    {
+        "title": "Adam is a note master",
+        "text": "lorem Ipsum"
     }
 ]
