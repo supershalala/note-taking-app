@@ -1,11 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    },
-
-    {
-        "title": "Adam is a note master",
-        "text": "lorem Ipsum"
-    }
-]
+[{"title":"Test Title","text":"Test text"},{"title":"Adam is a note master","text":"lorem Ipsum"},{"title":"Hello world","text":"lgdday","id":"91aea8bb-22aa-4471-b32e-084659ddc49f"}]

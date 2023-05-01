@@ -2,6 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
+const { v4: uuidv4 } = require('uuid');
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -26,6 +29,31 @@ app.get('/api/notes', (req, res) => {
       res.status(500).json({ error: 'Failed to read the notes database' });
     } else {
       res.json(JSON.parse(data));
+    }
+  });
+});
+
+// POST /api/notes to save a new note
+app.post('/api/notes', (req, res) => {
+  const newNote = req.body;
+  newNote.id = uuidv4();
+
+  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to read the notes database' });
+    } else {
+      const notes = JSON.parse(data);
+      notes.push(newNote);
+
+      fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes), 'utf8', (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Failed to save the new note' });
+        } else {
+          res.json(newNote);
+        }
+      });
     }
   });
 });
