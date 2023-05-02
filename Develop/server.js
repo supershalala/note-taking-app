@@ -46,7 +46,7 @@ app.post('/api/notes', (req, res) => {
       const notes = JSON.parse(data);
       notes.push(newNote);
 
-      fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(notes), 'utf8', (err) => {
+      fs.writeFile(path.join(__dirname, 'db', 'db.json'),JSON.stringify(notes, null, 2) + '\n', 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.status(500).json({ error: 'Failed to save the new note' });
