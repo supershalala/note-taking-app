@@ -1,1 +1,12 @@
-[{"title":"Test Title","text":"Test text"},{"title":"Adam is a note master","text":"lorem Ipsum"},{"title":"Hello world","text":"lgdday","id":"91aea8bb-22aa-4471-b32e-084659ddc49f"}]
+[
+  {
+    "title": "hello world ",
+    "text": "this is a test note, created by Adam\n",
+    "id": "1805dc02-1197-4cfb-b194-55a84201122c"
+  },
+  {
+    "title": "Instructions on how to use",
+    "text": "You can add and save notes using this app. ",
+    "id": "8964ca1b-821b-40c5-bedb-1a6ecd59fa5a"
+  }
+]
