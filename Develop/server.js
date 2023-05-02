@@ -58,6 +58,32 @@ app.post('/api/notes', (req, res) => {
   });
 });
 
+app.delete('/api/notes/:id', (req, res) => {
+  const noteId = req.params.id;
+
+  fs.readFile(path.join(__dirname, 'db', 'db.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to read the notes database' });
+    } else {
+      const notes = JSON.parse(data);
+
+      // Filter out the note with the given id
+      const updatedNotes = notes.filter(note => note.id !== noteId);
+
+      fs.writeFile(path.join(__dirname, 'db', 'db.json'), JSON.stringify(updatedNotes, null, 2) + '\n', (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Failed to delete the note' });
+        } else {
+          res.json({ message: 'Note deleted successfully' });
+        }
+      });
+    }
+  });
+});
+
+
 // Route to serve index.html for all other requests
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
